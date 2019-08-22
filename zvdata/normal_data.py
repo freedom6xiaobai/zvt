@@ -90,8 +90,9 @@ class NormalData(object):
     def normalize(self):
         """
         normalize data_df to
-                                    col1    col2    col3
-        entity_id    index_field
+                                 |   col1    col2    col3
+        -------------------------------------------------
+        entity_id    index_field |
 
         """
         if df_is_not_null(self.data_df):
@@ -230,3 +231,14 @@ class NormalData(object):
 
     def is_empty(self):
         return not df_is_not_null(self.data_df)
+
+
+if __name__ == '__main__':
+    df1 = NormalData._sample(entity_ids=['jack', 'helen'], row_size=3, columns=['math'])
+    df2 = NormalData._sample(entity_ids=['jack'], row_size=2, columns=['physics'])
+    print(df1)
+    print(df2)
+
+    df = df1.join(df2)
+
+    print(df)
